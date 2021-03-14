@@ -12,7 +12,7 @@ mkdir build
 cd build
 cmake ..
 make
-./ Hello - World
+./Hello-World
 ```
 
 # Controls
