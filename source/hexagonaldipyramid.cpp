@@ -61,6 +61,14 @@ Hexagonaldipyramid::Hexagonaldipyramid(float x, float y, color_t color)
 
 void Hexagonaldipyramid::draw(glm::mat4 VP)
 {
+    // GLuint texture;
+    // glGenTextures(1, &texture);
+    // glBindTexture(GL_TEXTURE_2D, texture); 
+    // int width= 1 , height = 1;
+    // unsigned char* image = SOIL_load_image("./download.png", &width, &height, 0, SOIL_LOAD_RGB);
+    // glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+    // glBindTexture(GL_TEXTURE_2D, 0); 
+
     Matrices.model = glm::mat4(1.0f);
     glm::mat4 translate = glm::translate(this->position); // glTranslatef
     glm::mat4 rotate = glm::rotate((float)(this->rotation * M_PI / 180.0f), glm::vec3(1, 0, 0));
@@ -69,6 +77,9 @@ void Hexagonaldipyramid::draw(glm::mat4 VP)
     Matrices.model *= (translate * rotate);
     glm::mat4 MVP = VP * Matrices.model;
     glUniformMatrix4fv(Matrices.MatrixID, 1, GL_FALSE, &MVP[0][0]);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    // glBindTexture(GL_TEXTURE_2D, texture);
     for (int i = 0; i < 12; i++)
     {
         draw3DObject(this->object[i]);
